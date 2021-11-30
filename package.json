@@ -1,6 +1,6 @@
 {
-  "name": "angular-basic",
-  "version": "0.0.0",
+  "name": "hiddengems-app",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,6 +16,7 @@
     "@angular/compiler": "~11.2.3",
     "@angular/core": "~11.2.3",
     "@angular/forms": "~11.2.3",
+    "@angular/material": "^13.0.2",
     "@angular/platform-browser": "~11.2.3",
     "@angular/platform-browser-dynamic": "~11.2.3",
     "@angular/router": "~11.2.3",

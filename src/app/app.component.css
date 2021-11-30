@@ -1,0 +1,62 @@
+*, h1, h2, h3, h4 {
+    margin:0px;
+    padding:0px;
+}
+#header {
+    background-color:white;
+    border-bottom:1px solid rgba(0,0,0,.25);
+}
+#title, #search-form, #search-placeholder, #search-results, #search-loading {
+    text-align:center;
+    padding:8px;
+    /* padding-top:16px; */
+    padding-bottom:0px;
+}
+#title {
+    /* padding-top:4px; */
+}
+#loading {
+    height:4px;
+}
+#search-form {
+    width:659px;
+    position:relative;
+    left:0;
+    right:0;
+    margin:0 auto;
+}
+#search-form {
+    left: 10px;
+}
+#search-submit {
+    vertical-align: top;
+    position: relative;
+    top:-2px;
+    left:-20px;
+}
+#search-placeholder, #search-results, #search-loading {
+    padding-top:12px;
+    padding-bottom:24px;
+}
+#search-results-cards a:hover mat-card {
+    background-color: rgba(103, 58, 183,.05)
+}
+#search-results mat-card {
+    width:275px;
+    padding:8px;
+    margin:0 8px;
+    margin-top:14px;
+    position:relative;
+    display:inline-block;
+    text-align:left;
+}
+#search-results mat-card-header {
+    /* width:200px; */
+    height:60px;
+}
+#search-results .card-avatar {
+    background-size:cover;
+}
+#search-results mat-card-subtitle {
+    text-transform:uppercase;
+}
