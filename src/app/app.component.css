@@ -19,20 +19,20 @@
     height:4px;
 }
 #search-form {
-    width:659px;
+    /* width:659px; */
     position:relative;
     left:0;
     right:0;
     margin:0 auto;
 }
 #search-form {
-    left: 10px;
+    /* left: 10px; */
 }
 #search-submit {
     vertical-align: top;
     position: relative;
-    top:-2px;
-    left:-20px;
+    /* top:-2px; */
+    /* left:-20px; */
 }
 #search-placeholder, #search-results, #search-loading {
     padding-top:12px;
@@ -59,4 +59,7 @@
 }
 #search-results mat-card-subtitle {
     text-transform:uppercase;
+}
+.input-wrapper {
+    margin:0 4px;
 }

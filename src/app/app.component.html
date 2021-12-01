@@ -8,15 +8,100 @@
 
   <!-- Search Form -->
   <div id="search-form">
-    <mat-form-field appearance="fill">
-      <mat-label>Data Provider</mat-label>
-      <mat-select [(value)]="inputProvider" [disabled]="disableInput">
-        <mat-option value="Coingecko">CoinGecko</mat-option>
-        <!-- <mat-option value="coinmarketcap">CoinMarketCap</mat-option> -->
-      </mat-select>
-    </mat-form-field>
+    <div>
+      <h4 style="">Select market data provider:</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Data Provider</mat-label>
+        <mat-select [(value)]="inputProvider" [disabled]="disableInput">
+          <mat-option value="Coingecko">CoinGecko</mat-option>
+          <!-- <mat-option value="coinmarketcap">CoinMarketCap</mat-option> -->
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
+      <button style="margin-left:8px;" (click)="fetchData(false)" [disabled]="disableInput || coins" mat-flat-button
+        color="primary">Fetch Data</button>
+      <button style="margin-left:8px;" (click)="refreshCache()" [disabled]="disableInput || !coins" mat-stroked-button
+        color="primary">Empty Cache</button>
+    </div>
+    <div>
+      <h4 style="">Filter market data:</h4>
+      <span class="input-wrapper">
+        <mat-form-field appearance="fill">
+          <mat-label>Minimum Price</mat-label>
+          <mat-select (selectionChange)="filterData(true, true)" [(value)]="inputMinPrice" [disabled]="disableInput">
+            <mat-option value="Any">Any</mat-option>
+            <mat-option value=".00000001">{{.00000001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".0000001">{{.0000001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".000001">{{.000001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".00001">{{.00001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".0001">{{.0001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".001">{{.001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".01">{{.01 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".1">{{.1 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="1">{{1 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="10">{{10 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="100">{{100 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="1000">{{1000 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="10000">{{10000 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Maximum Price</mat-label>
+          <mat-select (selectionChange)="filterData(true, true)" [(value)]="inputMaxPrice" [disabled]="disableInput">
+            <mat-option value=".00000001">{{.00000001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".0000001">{{.0000001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".000001">{{.000001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".00001">{{.00001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".0001">{{.0001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".001">{{.001 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".01">{{.01 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value=".1">{{.1 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="1">{{1 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="10">{{10 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="100">{{100 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="1000">{{1000 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="10000">{{10000 | currency:'USD':'symbol-narrow':'1.2-12'}}</mat-option>
+            <mat-option value="Any">Any</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </span><span class="input-wrapper">
+        <mat-form-field appearance="fill">
+          <mat-label>Minimum Volume</mat-label>
+          <mat-select (selectionChange)="filterData(true, true)" [(value)]="inputMinVolume" [disabled]="disableInput">
+            <mat-option value="Any">Any</mat-option>
+            <mat-option value="1000">{{1000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="10000">{{10000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="100000">{{100000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="1000000">{{1000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="10000000">{{10000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="100000000">{{100000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="1000000000">{{1000000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="10000000000">{{10000000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="100000000000">{{100000000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="1000000000000">{{1000000000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Maximum Volume</mat-label>
+          <mat-select [(value)]="inputMaxVolume" [disabled]="disableInput">
+            
+            <mat-option value="1000">{{1000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="10000">{{10000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="100000">{{100000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="1000000">{{1000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="10000000">{{10000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="100000000">{{100000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="1000000000">{{1000000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="10000000000">{{10000000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="100000000000">{{100000000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="1000000000000">{{1000000000000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
+            <mat-option value="Any">Any</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </span>
+      <!-- <mat-form-field appearance="fill">
       <mat-label>Maximum Price</mat-label>
       <input matInput [(ngModel)]="inputMaxPrice" [disabled]="disableInput">
     </mat-form-field>
@@ -24,11 +109,52 @@
     <mat-form-field appearance="fill">
       <mat-label>Minimum Volume</mat-label>
       <input matInput [(ngModel)]="inputMinVolume" [disabled]="disableInput">
-    </mat-form-field>
+    </mat-form-field> -->
 
-    <button (click)="search(true)" [disabled]="disableInput" id="search-submit" mat-fab color="primary" aria-label="Search">
+      <!-- <button (click)="search(true)" [disabled]="disableInput" id="search-submit" mat-fab color="primary" aria-label="Search">
       <mat-icon>search</mat-icon>
-    </button>
+    </button> -->
+    </div>
+
+    <div>
+      <span class="input-wrapper">
+        <mat-form-field appearance="fill">
+          <mat-label>Include Keyword(s)</mat-label>
+          <input matInput (ngModelChange)="filterIncludeKeywordsData($event)" [(ngModel)]="inputInclude" [disabled]="disableInput">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Exclude Keyword(s)</mat-label>
+          <input matInput (ngModelChange)="filterExcludeKeywordsData($event)" [(ngModel)]="inputExclude" [disabled]="disableInput">
+        </mat-form-field>
+      </span>
+      <span class="input-wrapper">
+        <mat-form-field (change)="sortData()"appearance="fill">
+          <mat-label>Sort By</mat-label>
+          <mat-select (selectionChange)="sortData()" [(value)]="inputSortBy" [disabled]="disableInput">
+            <mat-option value="volume">Volume</mat-option>
+            <mat-option value="price">Price</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="fill"> -->
+        <!-- <mat-button-toggle-group (change)="sortData()" style="position:relative;top:-2px;margin-left:8px;"
+           color="primary" [(value)]="inputSortDirection" aria-label="Sort">
+          <mat-button-toggle value="asc">ASC</mat-button-toggle>
+          <mat-button-toggle value="desc">DESC</mat-button-toggle>
+        </mat-button-toggle-group> -->
+        <div style="display:inline-block;margin-left:6px;vertical-align:top;margin-top:2px;">
+          <mat-radio-group style="display: flex; flex-direction: column;" color="primary" (change)="sortData()"
+            [(ngModel)]="inputSortDirection">
+            <mat-radio-button style="margin:2px;" value="asc">Asc</mat-radio-button>
+            <mat-radio-button style="margin:2px;" value="desc">Desc</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <!-- </mat-form-field> -->
+      </span>
+    </div>
+
+
   </div>
 
   <!-- Loading -->
@@ -39,16 +165,21 @@
 
 <!-- Search Placeholder -->
 <div id="search-placeholder" *ngIf="!results && !disableInput">
-  <h4 *ngIf="!error" style="display:inline-block;margin-top:4px;">Run a search to view data.</h4>
+  <h4 *ngIf="!error" style="display:inline-block;margin-top:4px;">No Data to Display.</h4>
   <h4 *ngIf="error" style="display:inline-block;margin-top:4px;">{{error}}</h4>
+</div>
+
+<!-- Search Loading -->
+<div id="search-loading" *ngIf="!results && disableInput">
+  <h4 style="display:inline-block;margin-top:4px;">Fetching {{inputProvider}} data. This may take a minute...</h4>
 </div>
 
 <!-- Search Results -->
 <div id="search-results" *ngIf="results">
   <h2 style="display:inline-block;margin-right:8px;line-height:22px;">{{results.length}}</h2>
-  <h4 style="display:inline-block;line-height:22px;">Results Found 
+  <h4 style="display:inline-block;line-height:22px;">Results Found
     <!-- <span *ngIf="coins">(Using Data Cache)</span> -->
-    <button style="margin-left:8px;" (click)="search(false)" [disabled]="disableInput" mat-stroked-button color="primary">Refresh Cache</button>
+    <!-- <button style="margin-left:8px;" (click)="search(false)" [disabled]="disableInput" mat-stroked-button color="primary">Refresh Cache</button> -->
   </h4>
 
   <div id="search-results-cards">
@@ -63,17 +194,14 @@
         <mat-card-content>
           <table style="width:100%;">
             <tr style="width:100%;">
-            <td style="width:50%;text-align:left;"><b>Price</b>:<br/> {{coin.price | currency:'USD':'symbol-narrow':'1.2-12'}}</td>
-            <td style="width:50%;text-align:right"><b>Volume</b>:<br/> {{coin.volume | currency:'USD':'symbol-narrow':'1.0-0'}}</td>
-          </tr>
+              <td style="width:50%;text-align:left;"><b>Price</b>:<br /> {{coin.price |
+                currency:'USD':'symbol-narrow':'1.2-12'}}</td>
+              <td style="width:50%;text-align:right"><b>Volume</b>:<br /> {{coin.volume |
+                currency:'USD':'symbol-narrow':'1.0-0'}}</td>
+            </tr>
           </table>
         </mat-card-content>
       </mat-card>
     </a>
   </div>
-</div>
-
-<!-- Search Loading -->
-<div id="search-loading" *ngIf="!results && disableInput">
-  <h4 style="display:inline-block;margin-top:4px;">Fetching {{inputProvider}} data. This may take a minute...</h4>
 </div>
