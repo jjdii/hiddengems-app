@@ -86,7 +86,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Maximum Volume</mat-label>
           <mat-select [(value)]="inputMaxVolume" [disabled]="disableInput">
-            
+
             <mat-option value="1000">{{1000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
             <mat-option value="10000">{{10000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
             <mat-option value="100000">{{100000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
@@ -120,16 +120,18 @@
       <span class="input-wrapper">
         <mat-form-field appearance="fill">
           <mat-label>Include Keyword(s)</mat-label>
-          <input matInput (ngModelChange)="filterIncludeKeywordsData($event)" [(ngModel)]="inputInclude" [disabled]="disableInput">
+          <input matInput (ngModelChange)="filterIncludeKeywordsData($event)" [(ngModel)]="inputInclude"
+            [disabled]="disableInput">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Exclude Keyword(s)</mat-label>
-          <input matInput (ngModelChange)="filterExcludeKeywordsData($event)" [(ngModel)]="inputExclude" [disabled]="disableInput">
+          <input matInput (ngModelChange)="filterExcludeKeywordsData($event)" [(ngModel)]="inputExclude"
+            [disabled]="disableInput">
         </mat-form-field>
       </span>
       <span class="input-wrapper">
-        <mat-form-field (change)="sortData()"appearance="fill">
+        <mat-form-field (change)="sortData()" appearance="fill">
           <mat-label>Sort By</mat-label>
           <mat-select (selectionChange)="sortData()" [(value)]="inputSortBy" [disabled]="disableInput">
             <mat-option value="volume">Volume</mat-option>
@@ -145,7 +147,7 @@
         </mat-button-toggle-group> -->
         <div style="display:inline-block;margin-left:6px;vertical-align:top;margin-top:2px;">
           <mat-radio-group style="display: flex; flex-direction: column;" color="primary" (change)="sortData()"
-            [(ngModel)]="inputSortDirection">
+            [(ngModel)]="inputSortDirection" [disabled]="disableInput">
             <mat-radio-button style="margin:2px;" value="asc">Asc</mat-radio-button>
             <mat-radio-button style="margin:2px;" value="desc">Desc</mat-radio-button>
           </mat-radio-group>
