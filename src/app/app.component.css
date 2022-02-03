@@ -9,30 +9,20 @@
 #title, #search-form, #search-placeholder, #search-results, #search-loading {
     text-align:center;
     padding:8px;
-    /* padding-top:16px; */
     padding-bottom:0px;
-}
-#title {
-    /* padding-top:4px; */
 }
 #loading {
     height:4px;
 }
 #search-form {
-    /* width:659px; */
     position:relative;
     left:0;
     right:0;
     margin:0 auto;
 }
-#search-form {
-    /* left: 10px; */
-}
 #search-submit {
     vertical-align: top;
     position: relative;
-    /* top:-2px; */
-    /* left:-20px; */
 }
 #search-placeholder, #search-results, #search-loading {
     padding-top:12px;
@@ -51,7 +41,6 @@
     text-align:left;
 }
 #search-results mat-card-header {
-    /* width:200px; */
     height:60px;
 }
 #search-results .card-avatar {

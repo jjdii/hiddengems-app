@@ -1,5 +1,6 @@
 <!-- Header -->
 <div id="header">
+  
   <!-- Title -->
   <div id="title">
     <h2 style="display:inline-block;">Hidden Gems</h2>
@@ -8,8 +9,9 @@
 
   <!-- Search Form -->
   <div id="search-form">
+
     <div>
-      <h4 style="">Select market data provider:</h4>
+      <h4>Select market data provider:</h4>
       <mat-form-field appearance="fill">
         <mat-label>Data Provider</mat-label>
         <mat-select [(value)]="inputProvider" [disabled]="disableInput">
@@ -23,8 +25,9 @@
       <button style="margin-left:8px;" (click)="refreshCache()" [disabled]="disableInput || !coins" mat-stroked-button
         color="primary">Empty Cache</button>
     </div>
+
     <div>
-      <h4 style="">Filter market data:</h4>
+      <h4>Filter market data:</h4>
       <span class="input-wrapper">
         <mat-form-field appearance="fill">
           <mat-label>Minimum Price</mat-label>
@@ -65,7 +68,9 @@
             <mat-option value="Any">Any</mat-option>
           </mat-select>
         </mat-form-field>
-      </span><span class="input-wrapper">
+      </span>
+
+      <span class="input-wrapper">
         <mat-form-field appearance="fill">
           <mat-label>Minimum Volume</mat-label>
           <mat-select (selectionChange)="filterData(true, true)" [(value)]="inputMinVolume" [disabled]="disableInput">
@@ -86,7 +91,6 @@
         <mat-form-field appearance="fill">
           <mat-label>Maximum Volume</mat-label>
           <mat-select [(value)]="inputMaxVolume" [disabled]="disableInput">
-
             <mat-option value="1000">{{1000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
             <mat-option value="10000">{{10000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
             <mat-option value="100000">{{100000 | currency:'USD':'symbol-narrow':'1.0-0'}}</mat-option>
@@ -101,19 +105,6 @@
           </mat-select>
         </mat-form-field>
       </span>
-      <!-- <mat-form-field appearance="fill">
-      <mat-label>Maximum Price</mat-label>
-      <input matInput [(ngModel)]="inputMaxPrice" [disabled]="disableInput">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Minimum Volume</mat-label>
-      <input matInput [(ngModel)]="inputMinVolume" [disabled]="disableInput">
-    </mat-form-field> -->
-
-      <!-- <button (click)="search(true)" [disabled]="disableInput" id="search-submit" mat-fab color="primary" aria-label="Search">
-      <mat-icon>search</mat-icon>
-    </button> -->
     </div>
 
     <div>
@@ -130,6 +121,7 @@
             [disabled]="disableInput">
         </mat-form-field>
       </span>
+
       <span class="input-wrapper">
         <mat-form-field (change)="sortData()" appearance="fill">
           <mat-label>Sort By</mat-label>
@@ -139,12 +131,6 @@
           </mat-select>
         </mat-form-field>
 
-        <!-- <mat-form-field appearance="fill"> -->
-        <!-- <mat-button-toggle-group (change)="sortData()" style="position:relative;top:-2px;margin-left:8px;"
-           color="primary" [(value)]="inputSortDirection" aria-label="Sort">
-          <mat-button-toggle value="asc">ASC</mat-button-toggle>
-          <mat-button-toggle value="desc">DESC</mat-button-toggle>
-        </mat-button-toggle-group> -->
         <div style="display:inline-block;margin-left:6px;vertical-align:top;margin-top:2px;">
           <mat-radio-group style="display: flex; flex-direction: column;" color="primary" (change)="sortData()"
             [(ngModel)]="inputSortDirection" [disabled]="disableInput">
@@ -152,11 +138,8 @@
             <mat-radio-button style="margin:2px;" value="desc">Desc</mat-radio-button>
           </mat-radio-group>
         </div>
-        <!-- </mat-form-field> -->
       </span>
     </div>
-
-
   </div>
 
   <!-- Loading -->
@@ -185,7 +168,6 @@
   </h4>
 
   <div id="search-results-cards">
-
     <a *ngFor="let coin of results" target="_blank" href="https://www.coingecko.com/en/coins/{{coin.id}}">
       <mat-card>
         <mat-card-header>
@@ -206,4 +188,5 @@
       </mat-card>
     </a>
   </div>
+
 </div>
