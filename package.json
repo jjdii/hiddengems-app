@@ -1,6 +1,8 @@
 {
   "name": "hiddengems-app",
   "version": "1.0.0",
+  "description": "Hidden Gems Static Web App",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +11,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~13.0.0",
     "@angular/cdk": "^13.0.2",
